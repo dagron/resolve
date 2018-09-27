@@ -5,6 +5,7 @@ import {
   watch,
   runTestcafe
 } from 'resolve-scripts'
+import createModuleComments from 'resolve-module-comments'
 
 import appConfig from './config.app'
 import devConfig from './config.dev'
@@ -16,11 +17,15 @@ const launchMode = process.argv[2]
 void (async () => {
   switch (launchMode) {
     case 'dev': {
-      await watch({
+      const configg = {
         ...defaultResolveConfig,
         ...appConfig,
-        ...devConfig
-      })
+        ...devConfig,
+        ...createModuleComments()
+      }
+      console.log(configg)
+
+      await watch(configg)
       break
     }
 

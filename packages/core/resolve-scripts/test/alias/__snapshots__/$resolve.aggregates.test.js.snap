@@ -4,10 +4,17 @@ exports[`base config works correctly [client] 1`] = `
 "
 const name_0 = \\"Todo\\"
 const commands_0 = {
-  create() {},
+  [`create`]: () => {},
   update() {},
   remove() {}
 }
+
+import { commandTypes } from 'resolve-module-user'
+
+const App = (props) => {
+  <div onClick={() => props[commandTypes.createComment](props.aggregateId) }/>
+}
+
 
 const aggregates = []
 
